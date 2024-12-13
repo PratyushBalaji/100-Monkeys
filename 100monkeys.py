@@ -5,7 +5,7 @@ However, they can only interact with doors that are a multiple of their number.
     (monkey #30 can only interact with doors 30, 60 and 90)
 Find the open doors after all the monkeys had finished their interactions.
 '''
-n = 5000000
+n = 5000
 doors = [False]*n
 
 # Approach 1 : Brute Force (Quadratic complexity)
