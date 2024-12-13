@@ -78,7 +78,7 @@ If we consider the factors of any number, every factor is paired with another to
 
 $$\text{24 : (1,24), (2,12), (3,8), (4,6)}$$
 
-In the case of square numbers, one of their factors is ($\sqrt n$, $\sqrt n$). But since every monkey only interacts with each door once, this factor pair leads to only one door interaction. Monkey #$\sqrt n$ toggles door #$n$ a single time.
+In the case of square numbers, one of their factors is ($\sqrt n$, $\sqrt n$). But since every monkey only interacts with each door once, this factor pair leads to only one door interaction. Monkey number $\sqrt n$ toggles door number $n$ a single time.
 
 Doors with an odd number of factors are left open, and the only ones with an odd number of factors are perfect squares, hence we only open those doors which are perfect squares.
 
@@ -116,7 +116,7 @@ Much faster than solution 2 because it doesn't do time-intensive square root ope
 
 **Algorithm :** Keeps track of current index and the next odd number. While index is within bounds, set value at index to `True`, add odd number to index, and store new next odd number.
 
-**Why this works :** Basic algebra tells us that to go from $n^2$ to $(n+1)^2$ we add $2n+1$. $2n+1$ is just the $n$th odd number (0-indexed). By recognising this, instead of incrementing $i$ and overwriting index $i^2$ as we did in the previous solution, we can keep track of an odd number `count`, add the count to `i` for the array overwriting, and add 2 to `count` to make it store the next odd number. This allows us to find every square without doing any multiplication, relying only on addition.
+**Why this works :** Basic algebra tells us that to go from $n^2$ to $(n+1)^2$ we add $2n+1$. $2n+1$ is just the $n$-th odd number (0-indexed). By recognising this, instead of incrementing $i$ and overwriting index $i^2$ as we did in the previous solution, we can keep track of an odd number `count`, add the count to `i` for the array overwriting, and add 2 to `count` to make it store the next odd number. This allows us to find every square without doing any multiplication, relying only on addition.
 
 **Code :** 
 ```python
