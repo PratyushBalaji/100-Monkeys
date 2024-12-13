@@ -1,6 +1,6 @@
 # 100 Monkeys Problem
 
-This code contains 4 solutions to the 100 monkeys problem, that I arrived at by observing various patterns in the problem. The following text explains each solution, 
+This code contains 4 solutions to the 100 monkeys problem, that I arrived at by observing various patterns in the problem. The following text explains each solution, the algorithm, and why they work.
 
 ## The Problem : 
 The problem is simple enough. 
