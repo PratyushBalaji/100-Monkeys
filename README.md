@@ -1,13 +1,11 @@
 # 100 Monkeys Problem
 
-This code contains 4 solutions to the 100 monkeys problem, that I arrived at by observing various patterns in the problem. The following text explains each solution, the algorithm, and why they work.
+This code contains 4 solutions to the "100 monkeys problem" which I arrived at by observing various patterns in the problem. The following text explains each solution, the algorithm behind it, and why it works.
 
 ## The Problem : 
-The problem is simple enough. 
-
 There is a corridor with 100 numbered, closed doors.
 
-100 numbered monkeys are released one by one, with each monkey either closing an open door or opening a closed door. However, they can only interact with doors that are a multiple of their number.
+100 numbered monkeys are released one by one, with each monkey either closing an open door or opening a closed door. However, they can only interact with doors that are a multiple of their assigned number.
 
 For example : 
 - Monkey #30 can only interact with doors 30, 60, and 90. 
@@ -15,7 +13,7 @@ For example :
 
 The goal is to find the doors which remain open after all the monkeys finish running through the corridor.
 
-Although the original problem was about 100 monkeys, these solutions are all made to work with corridors of any length.
+Although the original problem was about 100 monkeys, these solutions are intended to work with corridors of any length.
 
 ## Setup Code
 
@@ -33,7 +31,7 @@ def openDoors(sol):
     return [x+1 for x,i in enumerate(sol) if i == True]
 ```
 
-There is an issue with scoping. Since `doors` is global, calling a function with `doors` may lead to it copying the reference and modifying in place, even if you redeclare an array inside it like `ret = doors`. 
+There is an issue with Python using pass-by-reference for lists instead of pass-by-value. Since `doors` is a global list, calling a function with `doors` as its argument leads to it copying the reference and modifying in place, even if you redeclare an array inside (such as by saying `ret = doors` inside the function). 
 
 I need each function to reinitialise the doors array so it returns a new array each time instead. The simplest way to do this is declaring a local array that is equal to the passed array in all ways except the reference.
 
@@ -43,6 +41,8 @@ def solutionN(doors):
     returnedArr = doors[:] # copies array in its entirety
     ...
 ```
+
+Although this is a potentially expensive operation, since all the solutions perform it, it shouldn't affect our comparisons.
 
 ## Solution 1 : Brute Force
 **Time complexity : O($n^2$)**
@@ -74,7 +74,7 @@ Consider door #4. It is opened by monkey #1, but subsequently closed by monkey #
 
 We observe that each door is toggled exactly the same number of times as it has factors. If it has an even number of factors, it'll just return to its initial state. Every time it is opened, it is closed again.
 
-If we consider the factors of any number, every factor is paired with another to form the original number. Usually, they are paired with disctint factors like so :
+If we consider the factors of any number, every factor is paired with another to form the original number. Usually, they are paired with distinct factors like so :
 
 $$\text{24 : (1,24), (2,12), (3,8), (4,6)}$$
 
@@ -122,12 +122,12 @@ Much faster than solution 2 because it doesn't do time-intensive square root ope
 ```python
 def squareNumbersWithoutMult(d):
     ret = d[:]
-    count = 3 # count starts at 3 since first door toggled is #1
-    i=0
-    while i<len(ret):
-        ret[i]=True
-        i+=count
-        count+=2
+    count = 1 # count starts at 1 (first odd number)
+    i = 0
+    while i < len(ret):
+        ret[i] = True
+        count += 2
+        i += count
     return ret
 ```
 
