@@ -38,12 +38,12 @@ def squareNumbers(d):
 # Approach 4 : Using increasing odd spacing between squares to find index (Square Root complexity)
 def squareNumbersWithoutMult(d):
     ret = d[:]
-    count = 3
+    count = 1
     i=0
     while i<len(ret):
         ret[i]=True
-        i+=count
         count+=2
+        i+=count
     return ret
 
 def openDoors(sol):
